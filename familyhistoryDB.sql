@@ -5,10 +5,13 @@ CREATE TABLE person (
     birthday    DATE
 );
 
-INSERT INTO person (firstN, lastN, birthday) values ('Thomas', 'Burton', '1878-08-28');
-INSERT INTO person (firstN, lastN, birthday) values ('Herbert', 'Burton', '1847-10-01');
-INSERT INTO person (firstN, lastN, birthday) values ('Mary', 'Pass', '1849-08-06');
-INSERT INTO person (firstN, lastN, birthday) values ('Jeffery', 'Burton', '1880-06-13');
+INSERT INTO person (firstN, lastN, birthday) values ('Dustin', 'Christensen', '1977-06-25');
+INSERT INTO person (firstN, lastN, birthday) values ('Mark', 'Christensen', '1952-04-07');
+INSERT INTO person (firstN, lastN, birthday) values ('Nancy', 'Luna', '1956-06-02');
+INSERT INTO person (firstN, lastN, birthday) values ('Wayne', 'Christensen', '1918-07-12');
+INSERT INTO person (firstN, lastN, birthday) values ('Manuel', 'Luna', '1931-06-16');
+INSERT INTO person (firstN, lastN, birthday) values ('Helen', 'Schmidt', '1926-11-22');
+INSERT INTO person (firstN, lastN, birthday) values ('Janice', 'Underwood', '1930-2-14');
 
 -- giving a user access to the specified table
 CREATE USER familyhistoryuser WITH PASSWORD 'elijah';
