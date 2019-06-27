@@ -18,6 +18,7 @@ app.set("port", (process.env.PORT || port1));
 
 app.get("/getPerson", getPerson);
 app.get("/getChildren", getChildren);
+app.get("/getParent", getParent);
 
 app.listen(app.get('port'), function() {
     console.log("Now listening for connections on port: " + app.get("port"));
@@ -61,6 +62,22 @@ function getChildren(request, response) {
     });
 };
 
+function getParent(request, response) {
+    console.log("Getting Parent information from SERVER.");
+    
+    var child_FK = request.query.child_FK;
+    console.log("Retrieving person with id: ", child_FK);
+    
+    getParentFromDB(child_FK, function(error, result) {
+        console.log("Back from the getParentFromDB function with result: ", result);
+        
+        if (error || result == null || result.length != 1) {
+            response.status(500).json({success:false, data: error});
+        } else {
+            response.json(result);
+        }
+    });
+};
 
 function getPersonFromDB(id, callback) {
     console.log("getPersonFromDB called from id: ", id);
@@ -87,6 +104,26 @@ function getChildrenFromDB(parent_FK, callback) {
     
     var sql = "SELECT firstN, lastN FROM person INNER JOIN parent2child on child_FK = id WHERE parent_FK = $1::int";
     var params = [parent_FK];
+    
+    pool.query(sql, params, function(err, result) {
+        if (err) {
+            console.log("An error with the DB: ");
+            console.log(err);
+            callback(err, null);
+        };
+        
+        console.log("Found DB result: " + JSON.stringify(result.rows));
+        
+        callback(null, result.rows);
+        
+    });
+};
+
+function getParentFromDB(parent_FK, callback) {
+    console.log("getChildrenFromDB called from id: ", child_FK);
+    
+    var sql = "SELECT firstN, lastN FROM person INNER JOIN parent2child on parent_FK = id WHERE child_FK = $1::int";
+    var params = [child_FK];
     
     pool.query(sql, params, function(err, result) {
         if (err) {
