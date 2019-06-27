@@ -47,10 +47,10 @@ function getPerson(request, response) {
 function getChildren(request, response) {
     console.log("Getting Children information from SERVER.");
     
-    var id = request.query.id;
-    console.log("Retrieving person with id: ", id);
+    var id = request.query.parent_FK;
+    console.log("Retrieving person with id: ", parent_FK);
     
-    getChildrenFromDB(id, function(error, result) {
+    getChildrenFromDB(parent_FK, function(error, result) {
         console.log("Back from the getChildrenFromDB function with result: ", result);
         
         if (error || result == null || result.length != 1) {
@@ -82,8 +82,8 @@ function getPersonFromDB(id, callback) {
     });
 };
 
-function getChildrenFromDB(id, callback) {
-    console.log("getChildrenFromDB called from id: ", id);
+function getChildrenFromDB(parent_FK, callback) {
+    console.log("getChildrenFromDB called from id: ", parent_FK);
     
     var sql = "SELECT firstN, lastN, FROM person INNER JOIN parent2child on child_FK = id WHERE parent_FK = $1::int";
     var params = [parent_FK];
