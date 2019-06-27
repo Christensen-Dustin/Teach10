@@ -119,7 +119,7 @@ function getChildrenFromDB(parent_FK, callback) {
     });
 };
 
-function getParentFromDB(parent_FK, callback) {
+function getParentFromDB(child_FK, callback) {
     console.log("getChildrenFromDB called from id: ", child_FK);
     
     var sql = "SELECT firstN, lastN FROM person INNER JOIN parent2child on parent_FK = id WHERE child_FK = $1::int";
