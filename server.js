@@ -85,8 +85,8 @@ function getPersonFromDB(id, callback) {
 function getChildrenFromDB(id, callback) {
     console.log("getChildrenFromDB called from id: ", id);
     
-    var sql = "SELECT id, firstN, lastN, birthday FROM person WHERE id = $1::int";
-    var params = [id];
+    var sql = "SELECT firstN, lastN, FROM person INNER JOIN parent2child on child_FK = id WHERE parent_FK = $1::int";
+    var params = [parent_FK];
     
     pool.query(sql, params, function(err, result) {
         if (err) {

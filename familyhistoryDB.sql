@@ -14,7 +14,7 @@ INSERT INTO person (firstN, lastN, birthday) values ('Helen', 'Schmidt', '1926-1
 INSERT INTO person (firstN, lastN, birthday) values ('Janice', 'Underwood', '1930-2-14');
 
 CREATE TABLE parent2child (
-    id          SERIAL PRIMARY KEY NOT NULL,
+    pc_id          SERIAL PRIMARY KEY NOT NULL,
     parent_FK   INT references person(id),
     child_FK    INT references person(id)
 );
