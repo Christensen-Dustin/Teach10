@@ -47,7 +47,7 @@ function getPerson(request, response) {
 function getChildren(request, response) {
     console.log("Getting Children information from SERVER.");
     
-    var id = request.query.parent_FK;
+    var parent_FK = request.query.parent_FK;
     console.log("Retrieving person with id: ", parent_FK);
     
     getChildrenFromDB(parent_FK, function(error, result) {
