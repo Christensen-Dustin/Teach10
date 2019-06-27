@@ -102,7 +102,7 @@ function getPersonFromDB(id, callback) {
 function getChildrenFromDB(parent_FK, callback) {
     console.log("getChildrenFromDB called from id: ", parent_FK);
     
-    var sql = "SELECT firstN, lastN FROM person INNER JOIN parent2child on child_FK = id WHERE parent_FK = $1::int";
+    var sql = "SELECT id, firstN, lastN, birthday FROM person INNER JOIN parent2child on child_FK = id WHERE parent_FK = $1::int";
     var params = [parent_FK];
     
     pool.query(sql, params, function(err, result) {
@@ -122,7 +122,7 @@ function getChildrenFromDB(parent_FK, callback) {
 function getParentFromDB(child_FK, callback) {
     console.log("getChildrenFromDB called from id: ", child_FK);
     
-    var sql = "SELECT firstN, lastN FROM person INNER JOIN parent2child on parent_FK = id WHERE child_FK = $1::int";
+    var sql = "SELECT id, firstN, lastN, birthday FROM person INNER JOIN parent2child on parent_FK = id WHERE child_FK = $1::int";
     var params = [child_FK];
     
     pool.query(sql, params, function(err, result) {
