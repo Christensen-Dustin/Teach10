@@ -44,7 +44,7 @@ function displayInfo(person) {
 function displayChild(person) {
     console.log("displayInfo: " + person);
     for (x in person) {
-        document.getElementById('child').innerHTML = "<ul><li>First Name: " + person[x].firstn + "</li><li>First Last: " + person[x].lastn + "</li><li>Birthdate: " + person[x].birthday + "</li></ul>";
+        document.getElementById('child').innerHTML = "<ul><li>First Name: " + person[0].firstn + "</li><li>First Last: " + person[0].lastn + "</li><li>Birthdate: " + person[0].birthday + "</li></ul>";
     }
 }
 
