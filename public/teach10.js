@@ -9,11 +9,10 @@ function getDetails(id, caller) {
                 displayInfo(JSON.parse(request.responseText)[0]);
             }
             if(caller == "getChildren"){
-                displayChild(JSON.parse(request.responseText)[0]);
+                displayChild(JSON.parse(request.responseText));
             }
             if(caller == "getParents"){
-                displayParent(JSON.parse(request.responseText)[0]);
-                displayParent(JSON.parse(request.responseText)[1]);
+                displayParent(JSON.parse(request.responseText));
             }
         }
     }
@@ -44,14 +43,14 @@ function displayInfo(person) {
 function displayChild(person) {
     console.log("displayInfo: " + person);
     for (x in person) {
-        document.getElementById('child').innerHTML = "<ul><li>First Name: " + person[0].firstn + "</li><li>First Last: " + person[0].lastn + "</li><li>Birthdate: " + person[0].birthday + "</li></ul>";
+        document.getElementById('child').innerHTML += "<ul><li>First Name: " + person[x].firstn + "</li><li>First Last: " + person[x].lastn + "</li><li>Birthdate: " + person[x].birthday + "</li></ul>";
     }
 }
 
 function displayParent(person) {
     console.log("displayParent: " + person);
     for(x in person) {
-        document.getElementById('parent').innerHTML = "<ul><li>First Name: " + person[x].firstn + "</li><li>First Last: " + person[x].lastn + "</li><li>Birthdate: " + person[x].birthday + "</li></ul>";
+        document.getElementById('parent').innerHTML += "<ul><li>First Name: " + person[x].firstn + "</li><li>First Last: " + person[x].lastn + "</li><li>Birthdate: " + person[x].birthday + "</li></ul>";
     }
 }
 

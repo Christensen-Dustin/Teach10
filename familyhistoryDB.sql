@@ -12,6 +12,7 @@ INSERT INTO person (firstN, lastN, birthday) values ('Wayne', 'Christensen', '19
 INSERT INTO person (firstN, lastN, birthday) values ('Manuel', 'Luna', '1931-06-16');
 INSERT INTO person (firstN, lastN, birthday) values ('Helen', 'Schmidt', '1926-11-22');
 INSERT INTO person (firstN, lastN, birthday) values ('Janice', 'Underwood', '1930-2-14');
+INSERT INTO person (firstN, lastN, birthday) values ('Genny', 'Christensen', '1979-1-29');
 
 CREATE TABLE parent2child (
     pc_id          SERIAL PRIMARY KEY NOT NULL,
@@ -25,3 +26,5 @@ INSERT INTO parent2child (parent_FK, child_FK) values (4,2);
 INSERT INTO parent2child (parent_FK, child_FK) values (6,2);
 INSERT INTO parent2child (parent_FK, child_FK) values (5,3);
 INSERT INTO parent2child (parent_FK, child_FK) values (7,3);
+INSERT INTO parent2child (parent_FK, child_FK) values (2,8);
+INSERT INTO parent2child (parent_FK, child_FK) values (3,8);

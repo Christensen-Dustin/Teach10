@@ -1,3 +1,4 @@
+// setup for EXPRESS and POOL
 var express = require("express");
 var app = express();
 
@@ -6,7 +7,7 @@ const { Pool } = require("pg");
 // static directory
 app.use(express.static('public'));
 
-const connectionString = process.env.DATABASE_URL || "postgress://familyhistoryuser:elijah@localhost:5432/familyhistory";
+const connectionString = process.env.DATABASE_URL || "postgress://familyhistory:elijah@localhost:5432/familyhistory";
 
 const pool = new Pool({connectionString: connectionString});
 
@@ -24,6 +25,7 @@ app.listen(app.get('port'), function() {
     console.log("Now listening for connections on port: " + app.get("port"));
 });
 
+// Function to getPerson info from DATABASE
 function getPerson(request, response) {
     console.log("Getting Person information from SERVER.");
     
@@ -39,12 +41,9 @@ function getPerson(request, response) {
             response.json(result);
         }
     });
-    
-    // var result = {id: 238, first: "John", last: "Smith", birthdate: "1950-02-05"};
-    
-    // response.json(result);
 };
 
+// Function to getChildren info from DATABASE
 function getChildren(request, response) {
     console.log("Getting Children information from SERVER.");
     
@@ -62,6 +61,7 @@ function getChildren(request, response) {
     });
 };
 
+// Function to getParent info from DATABASE
 function getParent(request, response) {
     console.log("Getting Parent information from SERVER.");
     
@@ -79,6 +79,7 @@ function getParent(request, response) {
     });
 };
 
+// Callback for getting Person info from DATABASE
 function getPersonFromDB(id, callback) {
     console.log("getPersonFromDB called from id: ", id);
     
@@ -99,6 +100,7 @@ function getPersonFromDB(id, callback) {
     });
 };
 
+// Callback for getting Children info from DATABASE
 function getChildrenFromDB(parent_FK, callback) {
     console.log("getChildrenFromDB called from id: ", parent_FK);
     
@@ -119,8 +121,9 @@ function getChildrenFromDB(parent_FK, callback) {
     });
 };
 
+// Callback for getting Parent info from DATABASE
 function getParentFromDB(child_FK, callback) {
-    console.log("getChildrenFromDB called from id: ", child_FK);
+    console.log("getParentFromDB called from id: ", child_FK);
     
     var sql = "SELECT id, firstN, lastN, birthday FROM person INNER JOIN parent2child on parent_FK = id WHERE child_FK = $1::int";
     var params = [child_FK];
