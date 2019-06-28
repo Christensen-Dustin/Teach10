@@ -53,7 +53,7 @@ function getChildren(request, response) {
     getChildrenFromDB(parent_FK, function(error, result) {
         console.log("Back from the getChildrenFromDB function with result: ", result);
         
-        if (error || result == null || result.length != 1) {
+        if (error || result == null || result.length < 1) {
             response.status(500).json({success:false, data: error});
         } else {
             response.json(result);
@@ -71,7 +71,7 @@ function getParent(request, response) {
     getParentFromDB(child_FK, function(error, result) {
         console.log("Back from the getParentFromDB function with result: ", result);
         
-        if (error || result == null || result.length != 1) {
+        if (error || result == null || result.length < 1) {
             response.status(500).json({success:false, data: error});
         } else {
             response.json(result);
