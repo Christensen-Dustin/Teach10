@@ -43,12 +43,16 @@ function displayInfo(person) {
 
 function displayChild(person) {
     console.log("displayInfo: " + person);
-    document.getElementById('child').innerHTML = "<ul><li>First Name: " + person.firstn + "</li><li>First Last: " + person.lastn + "</li><li>Birthdate: " + person.birthday + "</li></ul>";   
+    for (x in person) {
+        document.getElementById('child').innerHTML = "<ul><li>First Name: " + person[x].firstn + "</li><li>First Last: " + person[x].lastn + "</li><li>Birthdate: " + person[x].birthday + "</li></ul>";
+    }
 }
 
 function displayParent(person) {
     console.log("displayParent: " + person);
-    document.getElementById('parent').innerHTML = "<ul><li>First Name: " + person.firstn + "</li><li>First Last: " + person.lastn + "</li><li>Birthdate: " + person.birthday + "</li></ul>";   
+    for(x in person) {
+        document.getElementById('parent').innerHTML = "<ul><li>First Name: " + person[x].firstn + "</li><li>First Last: " + person[x].lastn + "</li><li>Birthdate: " + person[x].birthday + "</li></ul>";
+    }
 }
 
 function getParents() {
